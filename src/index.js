@@ -10,10 +10,15 @@ const searchInput = document.querySelector(".search-input")
 
 searchBtn.addEventListener("click", async (e) => {
     e.preventDefault()
-    const data = await weatherData.fetchWeatherData(searchInput.value)
+    const data = await weatherData.fetchCurrentWeather(searchInput.value)
     weatherUI.displayCurrentWeather(data)
 })
 
-weatherData.fetchWeatherData("Irvine").then((data) => {
-    weatherUI.displayCurrentWeather(data)
-})
+async function main(city) {
+    const currentWeather = await weatherData.fetchCurrentWeather(city)
+    const forecast = await weatherData.fetchForecast(city)
+    weatherUI.displayCurrentWeather(currentWeather)
+    weatherUI.displayForecast(forecast)
+}
+
+main("Irvine")
