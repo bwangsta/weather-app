@@ -1,17 +1,19 @@
+import "./style.css"
+import "bootstrap-icons/font/bootstrap-icons.css";
 import WeatherData from "./WeatherData"
 import WeatherUI from "./WeatherUI"
 
+const weatherData = WeatherData()
+const weatherUI = WeatherUI()
 const searchBtn = document.querySelector(".search-btn")
 const searchInput = document.querySelector(".search-input")
 
-// searchBtn.addEventListener("click", async (e) => {
-//     e.preventDefault()
-//     const data = await fetchWeatherData(searchInput.value)
-//     displayCurrentWeather(data)
-// })
+searchBtn.addEventListener("click", async (e) => {
+    e.preventDefault()
+    const data = await weatherData.fetchWeatherData(searchInput.value)
+    weatherUI.displayCurrentWeather(data)
+})
 
-const weatherData = WeatherData()
-const weatherUI = WeatherUI()
-weatherData.fetchWeatherData("London").then((data) => {
+weatherData.fetchWeatherData("Irvine").then((data) => {
     weatherUI.displayCurrentWeather(data)
 })
