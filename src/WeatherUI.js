@@ -5,6 +5,7 @@ function WeatherUI() {
     async function displayCurrentWeather(data) {
         const currentWeather = document.querySelector(".current-weather-info")
         const cityName = document.createElement("p")
+        const date = document.createElement("p")
         const currentTemp = document.createElement("p")
         const minTemp = document.createElement("p")
         const maxTemp = document.createElement("p")
@@ -13,6 +14,7 @@ function WeatherUI() {
         const { temp, temp_min, temp_max } = data.main
 
         cityName.textContent = data.name
+        date.textContent = convertDateTime(data.dt)
         currentTemp.textContent = convertTemperature(temp)
         minTemp.textContent = convertTemperature(temp_min)
         maxTemp.textContent = convertTemperature(temp_max)
@@ -22,6 +24,7 @@ function WeatherUI() {
 
         currentWeather.append(
             cityName,
+            date,
             weatherIcon,
             currentTemp,
             minTemp,

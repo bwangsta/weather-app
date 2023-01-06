@@ -1,42 +1,28 @@
-function WeatherCard(day, icon, current, min, max) {
+function WeatherCard(date, icon, current) {
     /*
     <div class="weather-card">
-        <p class="card-day">Monday</p>
+        <p class="card-date">Monday</p>
         <i class="bi bi-cloudy card-weather-icon"></i>
         <p class="card-current-temp">72</p>
-        <div class="card-temp-info">
-        <p class="card-min-temp">60</p>
-        <p class="card-max-temp">80</p>
-        </div>
     </div>
     */
     const card = document.createElement("div")
-    const dayName = document.createElement("p")
+    const cardDate = document.createElement("p")
     const cardIcon = document.createElement("i")
     const currentTemp = document.createElement("p")
-    const tempInfo = document.createElement("div")
-    const minTemp = document.createElement("p")
-    const maxTemp = document.createElement("p")
 
-    dayName.textContent = day
+    cardDate.textContent = date
     currentTemp.textContent = current
-    minTemp.textContent = min
-    maxTemp.textContent = max
 
     card.className = "weather-card"
-    dayName.className = "card-day"
+    cardDate.className = "card-date"
     cardIcon.classList.add("bi")
     cardIcon.classList.add(icon)
-    tempInfo.className = "card-temp-info"
-    minTemp.className = "card-min-temp"
-    maxTemp.className = "card-max-temp"
 
-    tempInfo.append(minTemp, maxTemp)
     card.append(
-        dayName,
+        cardDate,
         cardIcon,
-        currentTemp,
-        tempInfo
+        currentTemp
     )
 
     return card
