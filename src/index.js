@@ -8,6 +8,7 @@ import "./assets/img/thunderstorm.jpg"
 import "bootstrap-icons/font/bootstrap-icons.css";
 import WeatherData from "./WeatherData"
 import WeatherUI from "./WeatherUI"
+import { render } from "./helper"
 
 const weatherData = WeatherData()
 const weatherUI = WeatherUI()
@@ -17,6 +18,7 @@ const content = document.querySelector("#content")
 
 searchBtn.addEventListener("click", async (e) => {
     e.preventDefault()
+    render()
     const currentWeather = await weatherData.fetchCurrentWeather(searchInput.value)
     const forecast = await weatherData.fetchForecast(searchInput.value)
     content.append(

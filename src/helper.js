@@ -58,9 +58,17 @@ function convertDateTime(dt) {
     return date.toLocaleString("en-US", options)
 }
 
+function render() {
+    const content = document.querySelector("#content")
+    while (content.firstChild) {
+        content.removeChild(content.firstChild);
+    }
+}
+
 export {
     selectWeatherIcon,
     convertTemperature,
     convertDateTime,
-    selectBackgroundImage
+    selectBackgroundImage,
+    render
 }
