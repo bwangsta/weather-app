@@ -1,5 +1,9 @@
 import "./style.css"
 import "./assets/img/cloudy.jpg"
+import "./assets/img/sunny.jpg"
+import "./assets/img/drizzle.jpg"
+import "./assets/img/rain.jpg"
+import "./assets/img/snow.jpg"
 import "bootstrap-icons/font/bootstrap-icons.css";
 import WeatherData from "./WeatherData"
 import WeatherUI from "./WeatherUI"
