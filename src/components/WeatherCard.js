@@ -1,11 +1,4 @@
 function WeatherCard(date, icon, description, current) {
-    /*
-    <div class="weather-card">
-        <p class="card-date">9:00 PM</p>
-        <i class="bi bi-cloudy card-weather-icon"></i>
-        <p class="card-current-temp">72</p>
-    </div>
-    */
     const card = document.createElement("div")
     const cardDate = document.createElement("p")
     const cardIcon = document.createElement("i")

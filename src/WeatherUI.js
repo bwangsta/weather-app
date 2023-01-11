@@ -1,5 +1,5 @@
 import WeatherCard from "./components/WeatherCard"
-import { selectWeatherIcon, convertTemperature, convertDateTime } from "./helper"
+import { selectWeatherIcon, convertTemperature, convertDateTime, selectBackgroundImage } from "./helper"
 
 function WeatherUI() {
     function displayCurrentWeather(data) {
@@ -24,6 +24,9 @@ function WeatherUI() {
         currentWeather.className = "current-weather"
         weatherIcon.className = "bi"
         weatherIcon.classList.add(selectWeatherIcon(data.weather[0].id))
+
+        // Change background image based on current weather
+        document.body.style.backgroundImage = `url(${selectBackgroundImage(data.weather[0].id)})`
 
         currentWeather.append(
             cityName,

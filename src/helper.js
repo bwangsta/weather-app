@@ -1,3 +1,10 @@
+import cloudyImg from "./assets/img/cloudy.jpg"
+import sunnyImg from "./assets/img/sunny.jpg"
+import drizzleImg from "./assets/img/drizzle.jpg"
+import rainImg from "./assets/img/rain.jpg"
+import snowImg from "./assets/img/snow.jpg"
+import thunderstormImg from "./assets/img/thunderstorm.jpg"
+
 // Helper functions
 function selectWeatherIcon(id) {
     switch (true) {
@@ -18,6 +25,25 @@ function selectWeatherIcon(id) {
     }
 }
 
+function selectBackgroundImage(id) {
+    switch (true) {
+        case (id >= 200 && id < 300):
+            return thunderstormImg
+        case (id >= 300 && id < 400):
+            return drizzleImg
+        case (id >= 500 && id < 600):
+            return rainImg
+        case (id >= 600 && id < 700):
+            return snowImg
+        case (id === 800):
+            return sunnyImg
+        case (id > 800 && id < 900):
+            return cloudyImg
+        default:
+            return cloudyImg
+    }
+}
+
 function convertTemperature(temp) {
     return `${Math.ceil(temp)}°F`
 }
@@ -35,5 +61,6 @@ function convertDateTime(dt) {
 export {
     selectWeatherIcon,
     convertTemperature,
-    convertDateTime
+    convertDateTime,
+    selectBackgroundImage
 }
