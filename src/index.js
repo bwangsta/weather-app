@@ -30,14 +30,14 @@ searchBtn.addEventListener("click", async (e) => {
     searchInput.value = ""
 })
 
-// async function main(city) {
-//     const currentWeather = await weatherData.fetchCurrentWeather(city)
-//     const forecast = await weatherData.fetchForecast(city)
-//     content.append(
-//         Searchbar(),
-//         Weather(currentWeather),
-//         Forecast(forecast)
-//     )
-// }
+// for testing purposes only so I don't have to enter a city every time
+async function main(city) {
+    const currentWeather = await weatherData.fetchCurrentWeather(city)
+    const forecast = await weatherData.fetchForecast(city)
+    content.append(
+        Weather(currentWeather),
+        Forecast(forecast)
+    )
+}
 
-// main("Irvine")
+main("Irvine")

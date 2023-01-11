@@ -1,10 +1,4 @@
 function Searchbar() {
-    /*
-    <form class="searchbar">
-        <input class="searchbar--input" type="text" placeholder="City name">
-        <button class="searchbar--btn" type="submit">Search</button>
-    </form>
-    */
     const header = document.createElement("header")
     const searchBar = document.createElement("form")
     const searchInput = document.createElement("input")

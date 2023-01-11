@@ -20,10 +20,20 @@ In order to setup and work on this project on your own, you will need to:
 2. Install required dependencies\
 `npm install`
 
-WIP
+3. Run\
+`npm run build`
 
 ## Usage
 Type in a city in the search bar and the webpage will display its current weather and weather for the next 24 hours in 3 hour intervals.
+
+## Roadmap
+- [x] Dynamically change background image based on location's current weather
+- [ ] Show the time of the location queried
+- [ ] Add sound effects based on the weather
+- [ ] Display weather based on user's location by default
+- [ ] Add more weather statistics
+- [ ] Add button to toggle between Fahrenheit and Celcius
+- [ ] Transition to another free weather API
 
 ## Acknowledgements
 - [Bootstrap Icons](https://icons.getbootstrap.com/)

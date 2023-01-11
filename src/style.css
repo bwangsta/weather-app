@@ -20,10 +20,16 @@ body {
   color: var(--white);
 }
 
-header {
+#content {
+  max-width: 62.5rem;
+  margin: 0 auto;
+}
+
+.searchbar {
   display: flex;
   justify-content: center;
   padding: 1.5rem 1rem;
+  gap: 0.5rem;
 }
 
 .searchbar__input,
@@ -36,7 +42,6 @@ header {
 
 .searchbar__input {
   width: clamp(11rem, 30vw, 50rem);
-  margin-right: 0.5rem;
 }
 
 .searchbar__input:focus {
@@ -46,6 +51,61 @@ header {
 .searchbar__btn {
   background-color: transparent;
   color: var(--white);
+}
+
+.weather {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  gap: 2rem;
+}
+
+@media (min-width: 500px) {
+  .weather {
+    justify-content: space-between;
+  }
+}
+
+.weather__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "weatherIcon temperature"
+    "description description"
+    "low high";
+  gap: 1rem;
+  justify-items: center;
+  align-items: center;
+}
+
+.weather__info {
+  font-size: 3rem;
+}
+
+.weather__icon {
+  grid-area: weatherIcon;
+  font-size: clamp(7rem, 7vw, 10rem);
+}
+
+.weather__temp {
+  grid-area: temperature;
+  font-size: clamp(3.5rem, 7vw, 5rem);
+}
+
+.weather__description {
+  grid-area: description;
+}
+
+.weather__min {
+  grid-area: low;
+  justify-self: end;
+}
+
+.weather__max {
+  grid-area: high;
+  justify-self: start;
 }
 
 .forecast__grid {
@@ -61,6 +121,7 @@ header {
   align-items: center;
   padding: 2rem;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 1rem;
 }
 
 .card__icon {
