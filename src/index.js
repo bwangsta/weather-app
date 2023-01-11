@@ -15,8 +15,8 @@ initialLoad()
 
 const weatherData = WeatherData()
 const content = document.querySelector("#content")
-const searchInput = document.querySelector(".searchbar--input")
-const searchBtn = document.querySelector(".searchbar--btn")
+const searchInput = document.querySelector(".searchbar__input")
+const searchBtn = document.querySelector(".searchbar__btn")
 
 searchBtn.addEventListener("click", async (e) => {
     e.preventDefault()

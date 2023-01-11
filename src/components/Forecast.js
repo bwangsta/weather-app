@@ -6,7 +6,7 @@ function Forecast(data) {
     const forecastGrid = document.createElement("div")
 
     forecast.className = "forecast"
-    forecastGrid.className = "forecast-grid"
+    forecastGrid.className = "forecast__grid"
 
     for (let day of data.list) {
         const { id, description } = day.weather[0]

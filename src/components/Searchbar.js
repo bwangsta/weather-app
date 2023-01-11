@@ -18,8 +18,8 @@ function Searchbar() {
     searchBtn.type = "submit"
 
     searchBar.className = "searchbar"
-    searchInput.className = "searchbar--input"
-    searchBtn.className = "searchbar--btn"
+    searchInput.className = "searchbar__input"
+    searchBtn.className = "searchbar__btn"
     searchIcon.className = "bi"
     searchIcon.classList.add("bi-search")
 

@@ -1,3 +1,8 @@
+:root {
+  --white: #FBFBFB;
+  --gray: rgb(104 104 104);
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -6,13 +11,13 @@
 
 body {
   min-height: 100vh;
-  background-color: rgb(104 104 104);
+  background-color: var(--gray);
   background-image: url("./assets/img/sunny.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-blend-mode: multiply;
   background-position: center;
-  color: #FBFBFB
+  color: var(--white);
 }
 
 header {
@@ -21,7 +26,29 @@ header {
   padding: 1.5rem 1rem;
 }
 
-.forecast-grid {
+.searchbar__input,
+.searchbar__btn {
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  border: 2px solid var(--white);
+  font-size: clamp(1rem, 3vw, 1.2rem)
+}
+
+.searchbar__input {
+  width: clamp(11rem, 30vw, 50rem);
+  margin-right: 0.5rem;
+}
+
+.searchbar__input:focus {
+  outline: none !important;
+}
+
+.searchbar__btn {
+  background-color: transparent;
+  color: var(--white);
+}
+
+.forecast__grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
