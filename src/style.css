@@ -6,6 +6,19 @@
 
 body {
   min-height: 100vh;
+  background-color: rgb(104 104 104);
+  background-image: url("./assets/img/cloudy.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-blend-mode: multiply;
+  color: #FBFBFB
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  /* background-color: rgb(37, 35, 35); */
+  padding: 1.5rem 1rem;
 }
 
 i {
@@ -17,7 +30,6 @@ i {
 .forecast-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  justify-content: center;
   gap: 2rem;
   padding: 1rem;
 }

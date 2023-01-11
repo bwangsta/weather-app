@@ -6,15 +6,17 @@ function WeatherUI() {
         const currentWeather = document.createElement("div")
         const cityName = document.createElement("p")
         const date = document.createElement("p")
+        const weatherIcon = document.createElement("i")
+        const description = document.createElement("p")
         const currentTemp = document.createElement("p")
         const minTemp = document.createElement("p")
         const maxTemp = document.createElement("p")
-        const weatherIcon = document.createElement("i")
 
         const { temp, temp_min, temp_max } = data.main
 
         cityName.textContent = data.name
         date.textContent = convertDateTime(data.dt)
+        description.textContent = data.weather[0].description
         currentTemp.textContent = convertTemperature(temp)
         minTemp.textContent = convertTemperature(temp_min)
         maxTemp.textContent = convertTemperature(temp_max)
@@ -27,6 +29,7 @@ function WeatherUI() {
             cityName,
             date,
             weatherIcon,
+            description,
             currentTemp,
             minTemp,
             maxTemp
