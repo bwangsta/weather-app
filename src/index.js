@@ -11,10 +11,10 @@ import Weather from "./components/Weather"
 import Forecast from "./components/Forecast"
 import { render, initialLoad } from "./helper"
 
+initialLoad()
+
 const weatherData = WeatherData()
 const content = document.querySelector("#content")
-
-initialLoad()
 const searchInput = document.querySelector(".searchbar--input")
 const searchBtn = document.querySelector(".searchbar--btn")
 

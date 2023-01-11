@@ -67,7 +67,13 @@ function render() {
 }
 
 function initialLoad() {
-    document.body.prepend(Searchbar())
+    const main = document.createElement("main")
+    main.id = "content"
+
+    document.body.prepend(
+        Searchbar(),
+        main
+    )
 }
 
 export {
