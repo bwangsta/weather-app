@@ -9,10 +9,11 @@ function WeatherCard(date, icon, description, current) {
     currentTemp.textContent = current
     weatherDescription.textContent = description
 
-    card.className = "weather-card"
-    cardDate.className = "card-date"
+    card.className = "card"
+    cardDate.className = "card__date"
     cardIcon.classList.add("bi")
     cardIcon.classList.add(icon)
+    cardIcon.classList.add("card__icon")
 
     card.append(
         cardDate,

@@ -4,6 +4,7 @@ import drizzleImg from "./assets/img/drizzle.jpg"
 import rainImg from "./assets/img/rain.jpg"
 import snowImg from "./assets/img/snow.jpg"
 import thunderstormImg from "./assets/img/thunderstorm.jpg"
+import Searchbar from "./components/Searchbar"
 
 // Helper functions
 function selectWeatherIcon(id) {
@@ -65,10 +66,15 @@ function render() {
     }
 }
 
+function initialLoad() {
+    document.body.prepend(Searchbar())
+}
+
 export {
     selectWeatherIcon,
     convertTemperature,
     convertDateTime,
     selectBackgroundImage,
-    render
+    render,
+    initialLoad
 }
