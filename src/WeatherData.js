@@ -9,7 +9,7 @@ function WeatherData() {
     }
 
     async function fetchForecast(city) {
-        const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&units=imperial&cnt=8`)
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&units=imperial&cnt=9`)
         const data = await response.json()
 
         return data

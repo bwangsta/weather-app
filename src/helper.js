@@ -24,8 +24,12 @@ function convertTemperature(temp) {
 
 function convertDateTime(dt) {
     const date = new Date(dt * 1000)
+    const options = {
+        hour: "numeric",
+        minute: "numeric"
+    };
 
-    return date.toLocaleString("en-US")
+    return date.toLocaleString("en-US", options)
 }
 
 export {

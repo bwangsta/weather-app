@@ -2,8 +2,8 @@ import WeatherCard from "./components/WeatherCard"
 import { selectWeatherIcon, convertTemperature, convertDateTime } from "./helper"
 
 function WeatherUI() {
-    async function displayCurrentWeather(data) {
-        const currentWeather = document.querySelector(".current-weather-info")
+    function displayCurrentWeather(data) {
+        const currentWeather = document.createElement("div")
         const cityName = document.createElement("p")
         const date = document.createElement("p")
         const currentTemp = document.createElement("p")
@@ -19,8 +19,9 @@ function WeatherUI() {
         minTemp.textContent = convertTemperature(temp_min)
         maxTemp.textContent = convertTemperature(temp_max)
 
+        currentWeather.className = "current-weather"
         weatherIcon.className = "bi"
-        weatherIcon.classList.add = selectWeatherIcon(data.weather[0].id)
+        weatherIcon.classList.add(selectWeatherIcon(data.weather[0].id))
 
         currentWeather.append(
             cityName,
@@ -30,34 +31,36 @@ function WeatherUI() {
             minTemp,
             maxTemp
         )
+
+        return currentWeather
     }
 
-    async function displayForecast(data) {
-        const weatherForecast = document.querySelector(".weather-forecast")
+    function displayForecast(data) {
+        const forecast = document.createElement("div")
         const forecastGrid = document.createElement("div")
 
+        forecast.className = "forecast"
         forecastGrid.className = "forecast-grid"
 
         for (let day of data.list) {
-            const { temp, temp_min, temp_max } = day.main
             forecastGrid.append(
                 WeatherCard(
                     convertDateTime(day.dt),
                     selectWeatherIcon(day.weather[0].id),
-                    convertTemperature(temp),
-                    convertTemperature(temp_min),
-                    convertTemperature(temp_max)
+                    day.weather[0].description,
+                    convertTemperature(day.main.temp)
                 )
             )
         }
 
-        weatherForecast.append(forecastGrid)
+        forecast.append(forecastGrid)
+
+        return forecast
     }
 
     return {
         displayCurrentWeather, displayForecast
     }
 }
-
 
 export default WeatherUI

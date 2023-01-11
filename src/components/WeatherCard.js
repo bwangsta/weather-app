@@ -1,7 +1,7 @@
-function WeatherCard(date, icon, current) {
+function WeatherCard(date, icon, description, current) {
     /*
     <div class="weather-card">
-        <p class="card-date">Monday</p>
+        <p class="card-date">9:00 PM</p>
         <i class="bi bi-cloudy card-weather-icon"></i>
         <p class="card-current-temp">72</p>
     </div>
@@ -10,9 +10,11 @@ function WeatherCard(date, icon, current) {
     const cardDate = document.createElement("p")
     const cardIcon = document.createElement("i")
     const currentTemp = document.createElement("p")
+    const weatherDescription = document.createElement("p")
 
     cardDate.textContent = date
     currentTemp.textContent = current
+    weatherDescription.textContent = description
 
     card.className = "weather-card"
     cardDate.className = "card-date"
@@ -22,6 +24,7 @@ function WeatherCard(date, icon, current) {
     card.append(
         cardDate,
         cardIcon,
+        weatherDescription,
         currentTemp
     )
 
