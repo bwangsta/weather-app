@@ -1,10 +1,10 @@
-import { datetimeToLocal, convertTemperature, selectWeatherIcon, selectBackgroundImage, selectDescription, convertDatetime } from "../helper"
+import { convertTemperature, selectWeatherIcon, selectBackgroundImage, selectDescription, convertDatetime } from "../helper"
 
 function Weather(name, data) {
     const currentWeather = document.createElement("div")
     const weatherInfo = document.createElement("div")
     const weatherGrid = document.createElement("div")
-    const cityName = document.createElement("p")
+    const cityName = document.createElement("h1")
     const timeElement = document.createElement("p")
     const weekdayElement = document.createElement("p")
     const dateElement = document.createElement("p")

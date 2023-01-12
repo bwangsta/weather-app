@@ -120,6 +120,7 @@ function render() {
 function initialLoad() {
     const main = document.createElement("main")
     main.id = "content"
+    main.className = "container"
 
     document.body.prepend(
         Searchbar(),

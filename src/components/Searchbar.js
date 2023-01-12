@@ -12,6 +12,7 @@ function Searchbar() {
     searchBtn.type = "submit"
 
     searchBar.className = "searchbar"
+    searchBar.classList.add("container")
     searchInput.className = "searchbar__input"
     searchBtn.className = "searchbar__btn"
     searchIcon.className = "bi"
