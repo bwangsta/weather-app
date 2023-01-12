@@ -1,11 +1,13 @@
-import { convertDateTime, convertTemperature, selectWeatherIcon, selectBackgroundImage } from "../helper"
+import { datetimeToLocal, convertTemperature, selectWeatherIcon, selectBackgroundImage, selectDescription, convertDatetime } from "../helper"
 
-function Weather(data) {
+function Weather(name, data) {
     const currentWeather = document.createElement("div")
     const weatherInfo = document.createElement("div")
     const weatherGrid = document.createElement("div")
     const cityName = document.createElement("p")
-    const time = document.createElement("p")
+    const timeElement = document.createElement("p")
+    const weekdayElement = document.createElement("p")
+    const dateElement = document.createElement("p")
     const weatherDescription = document.createElement("p")
     const currentTemp = document.createElement("p")
     const minTemp = document.createElement("p")
@@ -13,19 +15,23 @@ function Weather(data) {
     const weatherIcon = document.createElement("i")
 
     // object destructuring to make it easier to access data from API
-    const { temp, temp_min, temp_max } = data.main
-    const { id, description } = data.weather[0]
+    const { temperature, weathercode, time } = data.current_weather
+    const temp_min = data.daily.temperature_2m_min[0]
+    const temp_max = data.daily.temperature_2m_max[0]
+    const { day, dayPeriod, hour, minute, month, weekday, year } = convertDatetime(time, data.timezone)
 
-    cityName.textContent = data.name
-    time.textContent = convertDateTime(data.dt)
-    weatherDescription.textContent = description
-    currentTemp.textContent = convertTemperature(temp)
+    cityName.textContent = name
+    timeElement.textContent = `${hour}:${minute} ${dayPeriod}`
+    weekdayElement.textContent = weekday
+    dateElement.textContent = `${month} ${day}, ${year}`
+    weatherDescription.textContent = selectDescription(weathercode)
+    currentTemp.textContent = convertTemperature(temperature)
     minTemp.textContent = `L:${convertTemperature(temp_min)}`
     maxTemp.textContent = `H:${convertTemperature(temp_max)}`
 
     currentWeather.className = "weather"
     cityName.className = "weather__city"
-    time.className = "weather__time"
+    timeElement.className = "weather__time"
     weatherInfo.className = "weather__info"
     weatherGrid.className = "weather__grid"
     weatherDescription.className = "weather__description"
@@ -33,11 +39,11 @@ function Weather(data) {
     minTemp.className = "weather__min"
     maxTemp.className = "weather__max"
     weatherIcon.className = "bi"
-    weatherIcon.classList.add(selectWeatherIcon(id))
+    weatherIcon.classList.add(selectWeatherIcon(weathercode))
     weatherIcon.classList.add("weather__icon")
 
     // Change background image based on current weather
-    document.body.style.backgroundImage = `url(${selectBackgroundImage(id)})`
+    document.body.style.backgroundImage = `url(${selectBackgroundImage(weathercode)})`
 
     weatherGrid.append(weatherIcon,
         weatherDescription,
@@ -45,7 +51,11 @@ function Weather(data) {
         minTemp,
         maxTemp
     )
-    weatherInfo.append(cityName, time)
+    weatherInfo.append(cityName,
+        timeElement,
+        weekdayElement,
+        dateElement
+    )
 
     currentWeather.append(
         weatherInfo,

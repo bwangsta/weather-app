@@ -1,5 +1,5 @@
-import { convertDateTime, convertTemperature, selectWeatherIcon } from "../helper"
-import WeatherCard from "./WeatherCard"
+import { convertTemperature, selectWeatherIcon, selectDescription, convertDatetime } from "../helper"
+import ForecastCard from "./ForecastCard"
 
 function Forecast(data) {
     const forecast = document.createElement("div")
@@ -8,14 +8,16 @@ function Forecast(data) {
     forecast.className = "forecast"
     forecastGrid.className = "forecast__grid"
 
-    for (let day of data.list) {
-        const { id, description } = day.weather[0]
+    const { time, weathercode, temperature_2m_min, temperature_2m_max } = data.daily
+
+    for (let i = 1; i < time.length; i++) {
         forecastGrid.append(
-            WeatherCard(
-                convertDateTime(day.dt),
-                selectWeatherIcon(id),
-                description,
-                convertTemperature(day.main.temp)
+            ForecastCard(
+                convertDatetime(time[i], "UTC"),
+                selectWeatherIcon(weathercode[i]),
+                selectDescription(weathercode[i]),
+                convertTemperature(temperature_2m_min[i]),
+                convertTemperature(temperature_2m_max[i])
             )
         )
     }

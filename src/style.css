@@ -129,3 +129,8 @@ body {
   height: 1em;
   font-size: 5em;
 }
+
+.card__minmax {
+  display: flex;
+  gap: 0.5rem;
+}

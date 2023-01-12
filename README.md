@@ -1,5 +1,5 @@
 # Weather App
-This project was completed for The Odin Project Javascript Weather App Project. The purpose of this project was to create a weather application that can receive data from the Openweather API.
+This project was completed for The Odin Project Javascript Weather App Project. The purpose of this project was to create a weather application that can receive data from the Openweather API. I decided to switch to Open Meteo API due to lack of data in the free version for the Openweather API.
 
 ## Built With 
 - Javascript
@@ -24,16 +24,20 @@ In order to setup and work on this project on your own, you will need to:
 `npm run build`
 
 ## Usage
-Type in a city in the search bar and the webpage will display its current weather and weather for the next 24 hours in 3 hour intervals.
+Type in a city in the search bar and the webpage will display its current weather and its future daily forecast.
 
 ## Roadmap
 - [x] Dynamically change background image based on location's current weather
-- [ ] Show the time of the location queried
+- [x] Show the time of the location queried
 - [ ] Add sound effects based on the weather
 - [ ] Display weather based on user's location by default
 - [ ] Add more weather statistics
 - [ ] Add button to toggle between Fahrenheit and Celcius
-- [ ] Transition to another free weather API
+- [x] Transition to another free weather API
+- [ ] Show search results when there are cities with the same names and allows user to select which one they want
+- [ ] Add hourly forecast for the next 24 hours
+- [ ] Add animations
+- [ ] Swap between day and night background images depending on sunrise/sunset time
 
 ## Acknowledgements
 - [Bootstrap Icons](https://icons.getbootstrap.com/)

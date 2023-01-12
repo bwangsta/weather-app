@@ -21,22 +21,24 @@ const searchBtn = document.querySelector(".searchbar__btn")
 searchBtn.addEventListener("click", async (e) => {
     e.preventDefault()
     render()
-    const currentWeather = await weatherData.fetchCurrentWeather(searchInput.value)
-    const forecast = await weatherData.fetchForecast(searchInput.value)
+    const geocode = await weatherData.fetchGeocode(searchInput.value)
+    const { name, latitude, longitude } = geocode.results[0]
+    const data = await weatherData.fetchWeather(latitude, longitude)
     content.append(
-        Weather(currentWeather),
-        Forecast(forecast)
+        Weather(name, data),
+        Forecast(data)
     )
     searchInput.value = ""
 })
 
-// for testing purposes only so I don't have to enter a city every time
+// TESTING PURPOSES ONLY so I don't have to enter a city every time
 async function main(city) {
-    const currentWeather = await weatherData.fetchCurrentWeather(city)
-    const forecast = await weatherData.fetchForecast(city)
+    const geocode = await weatherData.fetchGeocode(city)
+    const { name, latitude, longitude } = geocode.results[0]
+    const data = await weatherData.fetchWeather(latitude, longitude)
     content.append(
-        Weather(currentWeather),
-        Forecast(forecast)
+        Weather(name, data),
+        Forecast(data)
     )
 }
 
