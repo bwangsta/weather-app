@@ -41,6 +41,7 @@ Type in a city in the search bar and the webpage will display its current weathe
 
 ## Acknowledgements
 - [Bootstrap Icons](https://icons.getbootstrap.com/)
+- [Open-Meteo](https://open-meteo.com/)
 - [Cloudy Photo](https://unsplash.com/photos/V4qjYCac7y8?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) by [Artem Anokhin](https://unsplash.com/@atronyx?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/)
 - [Sunny Photo](https://unsplash.com/photos/TSgwbumanuE?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) by [CHUTTERSNAP](https://unsplash.com/@chuttersnap?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/)
 - [Thunderstorm Photo](https://unsplash.com/images/nature/thunderstorm?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) by [Tasos Mansour](https://unsplash.com/@mantasos?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/)

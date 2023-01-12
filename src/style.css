@@ -3,6 +3,12 @@
   --gray: rgb(104 104 104);
 }
 
+@font-face {
+  font-family: 'Nunito';
+  src: url('./assets/fonts/Nunito-VariableFont_wght.ttf') format('woff2');
+  font-style: normal;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -10,6 +16,7 @@
 }
 
 body {
+  font-family: "Nunito", sans-serif;
   min-height: 100vh;
   background-color: var(--gray);
   background-image: url("./assets/img/sunny.jpg");
