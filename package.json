@@ -26,6 +26,7 @@
         "webpack-cli": "^5.0.1"
     },
     "dependencies": {
-        "bootstrap-icons": "^1.10.3"
+        "bootstrap-icons": "^1.10.3",
+        "luxon": "^3.2.1"
     }
 }

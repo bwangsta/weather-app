@@ -1,4 +1,4 @@
-import { convertTemperature, selectWeatherIcon, selectBackgroundImage, selectDescription, convertDatetime } from "../helper"
+import { convertTemperature, selectWeatherIcon, selectBackgroundImage, selectDescription, convertDatetime, getCurrentTime } from "../helper"
 
 function Weather(name, data) {
     const currentWeather = document.createElement("div")
@@ -18,12 +18,13 @@ function Weather(name, data) {
     const { temperature, weathercode, time } = data.current_weather
     const temp_min = data.daily.temperature_2m_min[0]
     const temp_max = data.daily.temperature_2m_max[0]
-    const { day, dayPeriod, hour, minute, month, weekday, year } = convertDatetime(time, data.timezone)
+    const datetime = convertDatetime(time, data.timezone)
+    const { weekday, date } = datetime
 
     cityName.textContent = name
-    timeElement.textContent = `${hour}:${minute} ${dayPeriod}`
+    timeElement.textContent = getCurrentTime(data.timezone)
     weekdayElement.textContent = weekday
-    dateElement.textContent = `${month} ${day}, ${year}`
+    dateElement.textContent = date
     weatherDescription.textContent = selectDescription(weathercode)
     currentTemp.textContent = convertTemperature(temperature)
     minTemp.textContent = `L:${convertTemperature(temp_min)}`

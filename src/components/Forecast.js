@@ -13,7 +13,7 @@ function Forecast(data) {
     for (let i = 1; i < time.length; i++) {
         forecastGrid.append(
             ForecastCard(
-                convertDatetime(time[i], "UTC"),
+                convertDatetime(time[i], data.timezone),
                 selectWeatherIcon(weathercode[i]),
                 selectDescription(weathercode[i]),
                 convertTemperature(temperature_2m_min[i]),

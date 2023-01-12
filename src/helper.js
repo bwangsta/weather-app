@@ -5,6 +5,7 @@ import rainImg from "./assets/img/rain.jpg"
 import snowImg from "./assets/img/snow.jpg"
 import thunderstormImg from "./assets/img/thunderstorm.jpg"
 import Searchbar from "./components/Searchbar"
+import { DateTime } from "luxon";
 
 const weatherDescription = {
     0: "Clear sky",
@@ -86,28 +87,20 @@ function convertTemperature(temp) {
     return `${Math.ceil(temp)}°F`
 }
 
-function convertDatetime(dt, timezone) {
-    const formattedDatetime = {}
-    const date = new Date(dt)
-    const options = {
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-        hour: "numeric",
-        minute: "numeric",
-        timeZone: timezone
-    }
-
-    const newFormat = new Intl.DateTimeFormat("default", options).formatToParts(date)
-    for (let obj of newFormat) {
-        const { type, value } = obj
-        if (type !== "literal") {
-            formattedDatetime[type] = value
-        }
+function convertDatetime(datetime, timezone) {
+    const dt = DateTime.fromISO(datetime, { zone: timezone })
+    const formattedDatetime = {
+        time: dt.toFormat("t"),
+        date: dt.toFormat("DDD"),
+        weekday: dt.toFormat("EEEE"),
     }
 
     return formattedDatetime
+}
+
+function getCurrentTime(timezone) {
+    const dt = DateTime.now().setZone(timezone)
+    return dt.toFormat("tt")
 }
 
 function render() {
@@ -132,6 +125,7 @@ export {
     selectWeatherIcon,
     convertTemperature,
     convertDatetime,
+    getCurrentTime,
     selectBackgroundImage,
     render,
     initialLoad,

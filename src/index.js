@@ -9,7 +9,7 @@ import "./assets/img/thunderstorm.jpg"
 import WeatherData from "./WeatherData"
 import Weather from "./components/Weather"
 import Forecast from "./components/Forecast"
-import { render, initialLoad } from "./helper"
+import { render, initialLoad, getCurrentTime } from "./helper"
 
 initialLoad()
 
@@ -28,6 +28,10 @@ searchBtn.addEventListener("click", async (e) => {
         Weather(name, data),
         Forecast(data)
     )
+    const time = document.querySelector(".weather__time")
+    setInterval(() => {
+        time.textContent = getCurrentTime(data.timezone)
+    }, 1000)
     searchInput.value = ""
 })
 
@@ -40,6 +44,10 @@ async function main(city) {
         Weather(name, data),
         Forecast(data)
     )
+    const time = document.querySelector(".weather__time")
+    setInterval(() => {
+        time.textContent = getCurrentTime(data.timezone)
+    }, 1000)
 }
 
 main("Irvine")

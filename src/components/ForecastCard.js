@@ -7,9 +7,7 @@ function ForecastCard(datetime, icon, description, min, max) {
     const minTemp = document.createElement("p")
     const maxTemp = document.createElement("p")
 
-    const { weekday } = datetime
-
-    cardDatetime.textContent = weekday
+    cardDatetime.textContent = datetime.weekday
     weatherDescription.textContent = description
     minTemp.textContent = `L:${min}`
     maxTemp.textContent = `H:${max}`
