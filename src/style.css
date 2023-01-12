@@ -15,6 +15,10 @@
   padding: 0;
 }
 
+p {
+  font-size: 1.125rem;
+}
+
 body {
   font-family: "Nunito", sans-serif;
   min-height: 100vh;
@@ -49,10 +53,21 @@ body {
 
 .searchbar__input {
   width: clamp(11rem, 30vw, 50rem);
+  border-bottom: 2px solid var(--white);
+  background-color: transparent;
 }
 
 .searchbar__input:focus {
   outline: none !important;
+  color: var(--white);
+}
+
+.searchbar__input::placeholder {
+  color: var(--white);
+}
+
+.searchbar__input:focus::placeholder {
+  color: transparent;
 }
 
 .searchbar__btn {
@@ -75,6 +90,18 @@ body {
   }
 }
 
+.weather__city {
+  font-size: clamp(3.4rem, 10vw, 5.06rem);
+  font-weight: 900;
+}
+
+.weather__time,
+.weather__weekday,
+.weather__date {
+  font-size: clamp(1.5rem, 5vw, 2.25rem);
+  font-weight: 700;
+}
+
 .weather__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -82,23 +109,20 @@ body {
     "weatherIcon temperature"
     "description description"
     "low high";
-  gap: 1rem;
+  gap: 0.5rem;
   justify-items: center;
   align-items: center;
 }
 
-.weather__info {
-  font-size: 3rem;
-}
-
 .weather__icon {
   grid-area: weatherIcon;
-  font-size: clamp(7rem, 7vw, 10rem);
+  font-size: clamp(7.6rem, 20vw, 11.4rem);
 }
 
 .weather__temp {
   grid-area: temperature;
-  font-size: clamp(3.5rem, 7vw, 5rem);
+  font-size: clamp(3.375rem, 10vw, 5.06rem);
+  font-weight: 900;
 }
 
 .weather__description {
@@ -107,12 +131,16 @@ body {
 
 .weather__min {
   grid-area: low;
-  justify-self: end;
 }
 
 .weather__max {
   grid-area: high;
-  justify-self: start;
+}
+
+.weather__description,
+.weather__min,
+.weather__max {
+  font-size: clamp(1.5rem, 5vw, 2.25rem);
 }
 
 .forecast__grid {
@@ -137,6 +165,11 @@ body {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 1rem;
   gap: 1rem;
+}
+
+.card__date {
+  font-size: 1.5rem;
+  font-weight: 700;
 }
 
 .card__icon {

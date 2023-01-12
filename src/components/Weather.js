@@ -33,6 +33,8 @@ function Weather(name, data) {
     currentWeather.className = "weather"
     cityName.className = "weather__city"
     timeElement.className = "weather__time"
+    weekdayElement.className = "weather__weekday"
+    dateElement.className = "weather__date"
     weatherInfo.className = "weather__info"
     weatherGrid.className = "weather__grid"
     weatherDescription.className = "weather__description"
@@ -46,9 +48,10 @@ function Weather(name, data) {
     // Change background image based on current weather
     document.body.style.backgroundImage = `url(${selectBackgroundImage(weathercode)})`
 
-    weatherGrid.append(weatherIcon,
-        weatherDescription,
+    weatherGrid.append(
+        weatherIcon,
         currentTemp,
+        weatherDescription,
         minTemp,
         maxTemp
     )
