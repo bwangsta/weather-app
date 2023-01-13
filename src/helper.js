@@ -4,7 +4,7 @@ import drizzleImg from "./assets/img/drizzle.jpg"
 import rainImg from "./assets/img/rain.jpg"
 import snowImg from "./assets/img/snow.jpg"
 import thunderstormImg from "./assets/img/thunderstorm.jpg"
-import Searchbar from "./components/Searchbar"
+import Header from "./components/Header"
 import { DateTime } from "luxon";
 
 const weatherDescription = {
@@ -103,20 +103,20 @@ function getCurrentTime(timezone) {
     return dt.toFormat("tt")
 }
 
-function render() {
-    const content = document.querySelector("#content")
-    while (content.firstChild) {
-        content.removeChild(content.firstChild);
+function render(element) {
+    while (element.firstChild) {
+        element.removeChild(element.firstChild);
     }
 }
 
 function initialLoad() {
     const main = document.createElement("main")
+
     main.id = "content"
     main.className = "container"
 
     document.body.prepend(
-        Searchbar(),
+        Header(),
         main
     )
 }

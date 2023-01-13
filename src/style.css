@@ -1,6 +1,7 @@
 :root {
   --white: #FBFBFB;
   --gray: rgb(104 104 104);
+  --black: rgb(37, 36, 36);
 }
 
 @font-face {
@@ -15,8 +16,18 @@
   padding: 0;
 }
 
+ul {
+  list-style: none;
+}
+
 p {
   font-size: 1.125rem;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 body {
@@ -36,11 +47,29 @@ body {
   margin: 0 auto;
 }
 
-.searchbar {
-  display: flex;
-  justify-content: center;
+.search-form {
+  display: grid;
+  grid-template-areas:
+    "searchbar searchButton"
+    "results .";
   padding: 1.5rem 1rem;
-  gap: 0.5rem;
+  position: relative;
+}
+
+.search-results {
+  grid-area: results;
+  position: absolute;
+  background-color: var(--black);
+  padding: 0 1rem;
+}
+
+.search-results li {
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.searchbar {
+  grid-area: searchbar;
 }
 
 .searchbar__input,
@@ -52,9 +81,10 @@ body {
 }
 
 .searchbar__input {
-  width: clamp(11rem, 30vw, 50rem);
+  min-width: 100%;
   border-bottom: 2px solid var(--white);
   background-color: transparent;
+  color: var(--white);
 }
 
 .searchbar__input:focus {
@@ -73,6 +103,9 @@ body {
 .searchbar__btn {
   background-color: transparent;
   color: var(--white);
+  grid-area: searchButton;
+  margin-left: 0.5rem;
+  font-weight: 900;
 }
 
 .weather {
