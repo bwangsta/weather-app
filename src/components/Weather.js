@@ -1,10 +1,12 @@
 import { convertTemperature, selectWeatherIcon, selectBackgroundImage, selectDescription, convertDatetime, getCurrentTime } from "../helper"
 
-function Weather(name, data) {
+function Weather(name, state, country, data) {
     const currentWeather = document.createElement("div")
     const weatherInfo = document.createElement("div")
     const weatherGrid = document.createElement("div")
-    const cityName = document.createElement("h1")
+    const locationText = document.createElement("h1")
+    const stateText = document.createElement("p")
+    const countryText = document.createElement("p")
     const timeElement = document.createElement("p")
     const weekdayElement = document.createElement("p")
     const dateElement = document.createElement("p")
@@ -20,8 +22,9 @@ function Weather(name, data) {
     const temp_max = data.daily.temperature_2m_max[0]
     const datetime = convertDatetime(time, data.timezone)
     const { weekday, date } = datetime
-
-    cityName.textContent = name
+    locationText.textContent = name
+    stateText.textContent = state
+    countryText.textContent = country
     timeElement.textContent = getCurrentTime(data.timezone)
     weekdayElement.textContent = weekday
     dateElement.textContent = date
@@ -31,7 +34,9 @@ function Weather(name, data) {
     maxTemp.textContent = `H:${convertTemperature(temp_max)}`
 
     currentWeather.className = "weather"
-    cityName.className = "weather__city"
+    locationText.className = "weather__location"
+    stateText.className = "weather__state"
+    countryText.className = "weather__country"
     timeElement.className = "weather__time"
     weekdayElement.className = "weather__weekday"
     dateElement.className = "weather__date"
@@ -55,7 +60,10 @@ function Weather(name, data) {
         minTemp,
         maxTemp
     )
-    weatherInfo.append(cityName,
+    weatherInfo.append(
+        locationText,
+        stateText,
+        countryText,
         timeElement,
         weekdayElement,
         dateElement

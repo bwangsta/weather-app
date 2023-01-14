@@ -8,7 +8,7 @@ function Searchbar() {
 
     searchLabel.setAttribute("for", "searchbar")
     searchInput.type = "text"
-    searchInput.placeholder = "City Name"
+    searchInput.placeholder = "Location Name"
     searchInput.id = "searchbar"
     searchInput.name = "searchbar"
     searchBtn.type = "submit"

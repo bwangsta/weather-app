@@ -7,7 +7,7 @@ function SearchResultList(data) {
     for (const result of data.results) {
         const { latitude, longitude, name, admin1, country } = result
         resultsList.append(
-            SearchResult(latitude, longitude, name, admin1, country)
+            SearchResult(latitude, longitude, name, admin1 ?? "", country)
         )
     }
 

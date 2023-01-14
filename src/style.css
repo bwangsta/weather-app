@@ -70,6 +70,7 @@ body {
 
 .searchbar {
   grid-area: searchbar;
+  align-self: flex-end;
 }
 
 .searchbar__input,
@@ -123,11 +124,13 @@ body {
   }
 }
 
-.weather__city {
+.weather__location {
   font-size: clamp(3.4rem, 10vw, 5.06rem);
   font-weight: 900;
 }
 
+.weather__state,
+.weather__country,
 .weather__time,
 .weather__weekday,
 .weather__date {

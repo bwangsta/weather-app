@@ -61,6 +61,7 @@ function testData() {
             }
         }
     }
+
     async function fetchGeocode(city) {
         return {
             "results": [
@@ -258,7 +259,7 @@ function testData() {
                     "admin2": "Mareeba"
                 }
             ],
-            "generationtime_ms": 0.68998337
+            "generationtime_ms": 0.6970167
         }
     }
 

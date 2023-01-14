@@ -43,13 +43,15 @@ function selectSearchResult() {
     const searchResults = document.querySelectorAll(".results>*")
     searchResults.forEach(location => {
         location.addEventListener("click", e => {
-            const { lat, lon, city } = e.target.dataset
+            const { lat, lon, city, state, country } = e.target.dataset
             searchInput.value = city
             rerender(searchResultsDiv)
 
             searchInput.dataset.lat = lat
             searchInput.dataset.lon = lon
             searchInput.dataset.city = city
+            searchInput.dataset.state = state
+            searchInput.dataset.country = country
         })
     })
 }
@@ -61,11 +63,15 @@ searchBtn.addEventListener("click", async (e) => {
     rerender(content)
 
     let name
+    let state
+    let country
     let latitude
     let longitude
     // when user manually clicks on a location in the search results
     if (searchInput.hasAttribute("data-lat") && searchInput.hasAttribute("data-lon")) {
         name = searchInput.dataset.city
+        state = searchInput.dataset.state
+        country = searchInput.dataset.country
         latitude = searchInput.dataset.lat
         longitude = searchInput.dataset.lon
     }
@@ -73,13 +79,15 @@ searchBtn.addEventListener("click", async (e) => {
     else {
         const geocode = await weatherData.fetchGeocode(searchInput.value)
         name = geocode.results[0].name
+        state = geocode.results[0].admin1 ?? ""
+        country = geocode.results[0].country
         latitude = geocode.results[0].latitude
         longitude = geocode.results[0].longitude
     }
 
     const data = await weatherData.fetchWeather(latitude, longitude)
     content.append(
-        Weather(name, data),
+        Weather(name, state, country, data),
         Forecast(data)
     )
 
@@ -93,18 +101,18 @@ searchBtn.addEventListener("click", async (e) => {
 // TESTING PURPOSES ONLY
 const test = testData()
 
-// async function main(city) {
-//     const geocode = await test.fetchGeocode(city)
-//     const { name, latitude, longitude } = geocode.results[0]
-//     const data = await test.fetchWeather(latitude, longitude)
-//     content.append(
-//         Weather(name, data),
-//         Forecast(data)
-//     )
-//     const time = document.querySelector(".weather__time")
-//     setInterval(() => {
-//         time.textContent = getCurrentTime(data.timezone)
-//     }, 1000)
-// }
+async function main(city) {
+    const geocode = await test.fetchGeocode(city)
+    const { name, admin1, country, latitude, longitude } = geocode.results[0]
+    const data = await test.fetchWeather(latitude, longitude)
+    content.append(
+        Weather(name, admin1, country, data),
+        Forecast(data)
+    )
+    const time = document.querySelector(".weather__time")
+    setInterval(() => {
+        time.textContent = getCurrentTime(data.timezone)
+    }, 1000)
+}
 
-// main("Irvine")
+main("Irvine")
