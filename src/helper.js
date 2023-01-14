@@ -103,7 +103,7 @@ function getCurrentTime(timezone) {
     return dt.toFormat("tt")
 }
 
-function render(element) {
+function rerender(element) {
     while (element.firstChild) {
         element.removeChild(element.firstChild);
     }
@@ -121,13 +121,41 @@ function initialLoad() {
     )
 }
 
+function typeTimer() {
+    let typeTimerId;
+
+    function get() {
+        return typeTimerId
+    }
+
+    function set(func, event) {
+        typeTimerId = setTimeout(func, 1000, event)
+    }
+
+    function reset() {
+        clearTimeout(typeTimerId)
+    }
+
+    return { get, set, reset }
+}
+
+function resetSearchInput() {
+    const searchInput = document.querySelector(".searchbar__input")
+    searchInput.value = ""
+    searchInput.removeAttribute("data-lat")
+    searchInput.removeAttribute("data-lon")
+    searchInput.removeAttribute("data-city")
+}
+
 export {
     selectWeatherIcon,
     convertTemperature,
     convertDatetime,
     getCurrentTime,
     selectBackgroundImage,
-    render,
+    rerender,
     initialLoad,
-    selectDescription
+    selectDescription,
+    typeTimer,
+    resetSearchInput,
 }
