@@ -103,7 +103,7 @@ function getCurrentTime(timezone) {
     return dt.toFormat("tt")
 }
 
-function rerender(element) {
+function clear(element) {
     while (element.firstChild) {
         element.removeChild(element.firstChild);
     }
@@ -142,9 +142,12 @@ function typeTimer() {
 function resetSearchInput() {
     const searchInput = document.querySelector(".searchbar__input")
     searchInput.value = ""
-    searchInput.removeAttribute("data-lat")
-    searchInput.removeAttribute("data-lon")
-    searchInput.removeAttribute("data-city")
+}
+
+function displayTime(data) {
+    // makes current time change in real time
+    const time = document.querySelector(".weather__time")
+    setInterval(() => time.textContent = getCurrentTime(data.timezone), 1000)
 }
 
 export {
@@ -153,9 +156,10 @@ export {
     convertDatetime,
     getCurrentTime,
     selectBackgroundImage,
-    rerender,
+    clear,
     initialLoad,
     selectDescription,
     typeTimer,
     resetSearchInput,
+    displayTime
 }

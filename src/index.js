@@ -11,24 +11,35 @@ import WeatherData from "./WeatherData"
 import Weather from "./components/Weather"
 import Forecast from "./components/Forecast"
 import SearchResultList from "./components/SearchResultList"
-import { rerender, initialLoad, getCurrentTime, typeTimer, resetSearchInput } from "./helper"
+import { clear, initialLoad, getCurrentTime, typeTimer, resetSearchInput, displayTime } from "./helper"
 // DELETE later
 import testData from "./testData";
 
 initialLoad()
 
-const weatherData = WeatherData()
 const content = document.querySelector("#content")
 const searchInput = document.querySelector(".searchbar__input")
 const searchBtn = document.querySelector(".searchbar__btn")
 const searchResultsDiv = document.querySelector(".search-results")
-const timer = typeTimer()
 
+const weatherData = WeatherData()
+const timer = typeTimer()
 
 searchInput.addEventListener("keyup", (e) => {
     timer.reset()
-    rerender(searchResultsDiv)
+    clear(searchResultsDiv)
     timer.set(showSearchResult, e)
+})
+
+searchBtn.addEventListener("click", async (e) => {
+    e.preventDefault()
+
+    // default behavior when user types and hits search without selecting one of the search results
+    const geocode = await weatherData.fetchGeocode(searchInput.value)
+    const { name, admin1, country, latitude, longitude } = geocode.results[0]
+    const data = await weatherData.fetchWeather(latitude, longitude)
+
+    renderContent(name, admin1, country, data)
 })
 
 async function showSearchResult(event) {
@@ -42,61 +53,29 @@ async function showSearchResult(event) {
 function selectSearchResult() {
     const searchResults = document.querySelectorAll(".results>*")
     searchResults.forEach(location => {
-        location.addEventListener("click", e => {
+        location.addEventListener("click", async (e) => {
+            // immediately search for the weather of that city
             const { lat, lon, city, state, country } = e.target.dataset
-            searchInput.value = city
-            rerender(searchResultsDiv)
+            const data = await weatherData.fetchWeather(lat, lon)
 
-            searchInput.dataset.lat = lat
-            searchInput.dataset.lon = lon
-            searchInput.dataset.city = city
-            searchInput.dataset.state = state
-            searchInput.dataset.country = country
+            renderContent(city, state, country, data)
         })
     })
 }
 
-searchBtn.addEventListener("click", async (e) => {
-    e.preventDefault()
+function renderContent(location, state, country, data) {
     timer.reset()
-    rerender(searchResultsDiv)
-    rerender(content)
+    clear(searchResultsDiv)
+    clear(content)
 
-    let name
-    let state
-    let country
-    let latitude
-    let longitude
-    // when user manually clicks on a location in the search results
-    if (searchInput.hasAttribute("data-lat") && searchInput.hasAttribute("data-lon")) {
-        name = searchInput.dataset.city
-        state = searchInput.dataset.state
-        country = searchInput.dataset.country
-        latitude = searchInput.dataset.lat
-        longitude = searchInput.dataset.lon
-    }
-    // default behavior when user types and hits search without selecting one of the search results
-    else {
-        const geocode = await weatherData.fetchGeocode(searchInput.value)
-        name = geocode.results[0].name
-        state = geocode.results[0].admin1 ?? ""
-        country = geocode.results[0].country
-        latitude = geocode.results[0].latitude
-        longitude = geocode.results[0].longitude
-    }
-
-    const data = await weatherData.fetchWeather(latitude, longitude)
     content.append(
-        Weather(name, state, country, data),
+        Weather(location, state, country, data),
         Forecast(data)
     )
 
-    // makes current time change in real time
-    const time = document.querySelector(".weather__time")
-    setInterval(() => time.textContent = getCurrentTime(data.timezone), 1000)
+    displayTime(data)
     resetSearchInput()
-})
-
+}
 
 // TESTING PURPOSES ONLY
 const test = testData()
