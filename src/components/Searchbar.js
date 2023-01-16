@@ -1,33 +1,39 @@
 function Searchbar() {
-    const searchForm = document.createElement("form")
-    const searchBarDiv = document.createElement("div")
-    const searchLabel = document.createElement("label")
+    const searchBar = document.createElement("form")
     const searchInput = document.createElement("input")
+    const searchError = document.createElement("span")
     const searchBtn = document.createElement("button")
     const searchIcon = document.createElement("i")
 
-    searchLabel.setAttribute("for", "searchbar")
-    searchInput.type = "text"
+    searchBar.noValidate = true
+    searchBar.role = "search"
+    searchInput.type = "search"
     searchInput.placeholder = "Location Name"
     searchInput.id = "searchbar"
     searchInput.name = "searchbar"
+    searchInput.ariaLabel = "Search for location"
+    searchInput.minLength = 2
+    searchInput.maxLength = 60
+    searchInput.required = true
+    searchError.ariaLive = "polite"
     searchBtn.type = "submit"
 
-    searchForm.className = "search-form"
-    searchBarDiv.className = "searchbar"
+    searchBar.className = "searchbar"
     searchInput.className = "searchbar__input"
+    // searchInput.classList.add("invalid")
+    searchError.className = "searchbar__error"
     searchBtn.className = "searchbar__btn"
     searchIcon.className = "bi"
     searchIcon.classList.add("bi-search")
 
-    searchBarDiv.append(searchLabel, searchInput)
     searchBtn.append(searchIcon)
-    searchForm.append(
-        searchBarDiv,
+    searchBar.append(
+        searchInput,
+        searchError,
         searchBtn
     )
 
-    return searchForm
+    return searchBar
 }
 
 export default Searchbar

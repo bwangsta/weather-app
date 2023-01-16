@@ -150,6 +150,31 @@ function displayTime(data) {
     setInterval(() => time.textContent = getCurrentTime(data.timezone), 1000)
 }
 
+function showError(input, error, isValidLocation) {
+    if (input.validity.valueMissing) {
+        error.textContent = "Please enter a location name"
+    }
+    else if (input.validity.tooShort) {
+        error.textContent = `Location name should be at least ${input.minLength} characters`
+    }
+    else if (input.validity.tooLong) {
+        error.textContent = `Location name should be at most ${input.maxLength} characters`
+    }
+    else if (!isValidLocation) {
+        error.textContent = "Unable to find the location. Please enter a different location"
+    }
+
+    input.classList.add("invalid")
+}
+
+// check to make sure location exists within the weather API
+function validLocation(data) {
+    if ("results" in data) {
+        return true
+    }
+    return false
+}
+
 export {
     selectWeatherIcon,
     convertTemperature,
@@ -161,5 +186,7 @@ export {
     selectDescription,
     typeTimer,
     resetSearchInput,
-    displayTime
+    displayTime,
+    showError,
+    validLocation
 }

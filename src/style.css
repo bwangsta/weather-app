@@ -47,10 +47,11 @@ body {
   margin: 0 auto;
 }
 
-.search-form {
+.searchbar {
   display: grid;
   grid-template-areas:
     "searchbar searchButton"
+    "error ."
     "results .";
   padding: 1.5rem 1rem;
   position: relative;
@@ -68,11 +69,6 @@ body {
   font-size: 1rem;
 }
 
-.searchbar {
-  grid-area: searchbar;
-  align-self: flex-end;
-}
-
 .searchbar__input,
 .searchbar__btn {
   border-radius: 0.5rem;
@@ -82,10 +78,15 @@ body {
 }
 
 .searchbar__input {
+  grid-area: searchbar;
   min-width: 100%;
   border-bottom: 2px solid var(--white);
   background-color: transparent;
   color: var(--white);
+}
+
+.searchbar__input.invalid {
+  border-color: red;
 }
 
 .searchbar__input:focus {
@@ -99,6 +100,13 @@ body {
 
 .searchbar__input:focus::placeholder {
   color: transparent;
+}
+
+.searchbar__error {
+  grid-area: error;
+  font-size: 0.8rem;
+  padding: 0.1rem 0.5rem 0;
+  color: red;
 }
 
 .searchbar__btn {
