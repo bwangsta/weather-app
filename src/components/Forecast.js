@@ -1,5 +1,5 @@
 import { convertTemperature, selectWeatherIcon, selectDescription, convertDatetime } from "../helper"
-import ForecastCard from "./ForecastCard"
+import ForecastCard from "./forecast-card"
 
 function Forecast(data) {
     const forecast = document.createElement("div")

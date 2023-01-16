@@ -1,4 +1,4 @@
-import SearchResult from "./SearchResult"
+import SearchResult from "./search-result"
 
 function SearchResultList(data) {
     const resultsList = document.createElement("ul")

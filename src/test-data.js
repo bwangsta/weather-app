@@ -1,4 +1,4 @@
-function testData() {
+function TestData() {
     async function fetchWeather(lat, lon) {
         return {
             "latitude": 33.667957,
@@ -269,4 +269,4 @@ function testData() {
     }
 }
 
-export default testData 
+export default TestData 

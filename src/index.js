@@ -7,13 +7,13 @@ import "./assets/img/drizzle.jpg"
 import "./assets/img/rain.jpg"
 import "./assets/img/snow.jpg"
 import "./assets/img/thunderstorm.jpg"
-import WeatherData from "./WeatherData"
-import Weather from "./components/Weather"
-import Forecast from "./components/Forecast"
-import SearchResultList from "./components/SearchResultList"
+import WeatherAPI from "./weather-api"
+import Weather from "./components/weather"
+import Forecast from "./components/forecast"
+import SearchResultList from "./components/search-result-list"
 import { clear, initialLoad, typeTimer, resetSearchInput, displayTime, showError, validLocation } from "./helper"
 // DELETE later
-import testData from "./testData";
+import TestData from "./test-data";
 
 initialLoad()
 
@@ -23,7 +23,7 @@ const searchError = document.querySelector(".searchbar__error")
 const searchBtn = document.querySelector(".searchbar__btn")
 const searchResultsDiv = document.querySelector(".search-results")
 
-const weatherData = WeatherData()
+const weatherAPI = WeatherAPI()
 const timer = typeTimer()
 
 searchInput.addEventListener("keyup", e => {
@@ -35,12 +35,12 @@ searchInput.addEventListener("keyup", e => {
 searchBtn.addEventListener("click", async e => {
     e.preventDefault()
 
-    const geocode = await weatherData.fetchGeocode(searchInput.value)
+    const geocode = await weatherAPI.fetchGeocode(searchInput.value)
     const isValidLocation = validLocation(geocode)
 
     if (searchInput.validity.valid && isValidLocation) {
         const { name, admin1, country, latitude, longitude } = geocode.results[0]
-        const data = await weatherData.fetchWeather(latitude, longitude)
+        const data = await weatherAPI.fetchWeather(latitude, longitude)
 
         renderContent(name, admin1, country, data)
     }
@@ -50,7 +50,7 @@ searchBtn.addEventListener("click", async e => {
 })
 
 async function showSearchResult(event) {
-    const geocode = await weatherData.fetchGeocode(event.target.value)
+    const geocode = await weatherAPI.fetchGeocode(event.target.value)
     const isValidLocation = validLocation(geocode)
 
     if (searchInput.validity.valid && isValidLocation) {
@@ -71,7 +71,7 @@ function selectSearchResult() {
         location.addEventListener("click", async (e) => {
             // immediately search for the weather of that city
             const { lat, lon, city, state, country } = e.target.dataset
-            const data = await weatherData.fetchWeather(lat, lon)
+            const data = await weatherAPI.fetchWeather(lat, lon)
 
             renderContent(city, state, country, data)
         })
@@ -93,7 +93,7 @@ function renderContent(location, state, country, data) {
 }
 
 // TESTING PURPOSES ONLY
-const test = testData()
+const test = TestData()
 
 async function main(city) {
     const geocode = await test.fetchGeocode(city)

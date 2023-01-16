@@ -4,7 +4,7 @@ import drizzleImg from "./assets/img/drizzle.jpg"
 import rainImg from "./assets/img/rain.jpg"
 import snowImg from "./assets/img/snow.jpg"
 import thunderstormImg from "./assets/img/thunderstorm.jpg"
-import Header from "./components/Header"
+import Header from "./components/header"
 import { DateTime } from "luxon";
 
 const weatherDescription = {

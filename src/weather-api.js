@@ -1,4 +1,4 @@
-function WeatherData() {
+function WeatherAPI() {
     async function fetchGeocode(city) {
         const response = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${city}&count=10`)
         const data = await response.json()
@@ -20,4 +20,4 @@ function WeatherData() {
 }
 
 
-export default WeatherData
+export default WeatherAPI
