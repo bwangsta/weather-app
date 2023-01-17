@@ -8,7 +8,7 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         clean: true,
     },
-    mode: "development",
+    mode: "production",
     plugins: [
         new HtmlWebpackPlugin({
             title: 'Weathering',
