@@ -1,4 +1,4 @@
-import { convertTemperature, selectWeatherIcon, selectDescription, convertDatetime } from "../helper"
+import { convertTemperature, selectWeatherIcon, selectDescription, convertDatetime } from "../weather-logic"
 import ForecastCard from "./forecast-card"
 
 function Forecast(data) {

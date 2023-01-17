@@ -11,7 +11,8 @@ import WeatherAPI from "./weather-api"
 import Weather from "./components/weather"
 import Forecast from "./components/forecast"
 import SearchResultList from "./components/search-result-list"
-import { clear, initialLoad, typeTimer, resetSearchInput, displayTime, showError, validLocation } from "./helper"
+import { clear, initialLoad, resetSearchInput, displayTime, showError } from "./weather-view"
+import { typeTimer, validLocation } from "./weather-logic"
 // DELETE later
 import TestData from "./test-data";
 
@@ -29,7 +30,7 @@ const timer = typeTimer()
 searchInput.addEventListener("keyup", e => {
     timer.reset()
     clear(searchResultsDiv)
-    timer.set(showSearchResult, e)
+    timer.set(showSearchResult, e.target.value)
 })
 
 searchBtn.addEventListener("click", async e => {
@@ -49,8 +50,8 @@ searchBtn.addEventListener("click", async e => {
     }
 })
 
-async function showSearchResult(event) {
-    const geocode = await weatherAPI.fetchGeocode(event.target.value)
+async function showSearchResult(value) {
+    const geocode = await weatherAPI.fetchGeocode(value)
     const isValidLocation = validLocation(geocode)
 
     if (searchInput.validity.valid && isValidLocation) {
@@ -67,8 +68,8 @@ async function showSearchResult(event) {
 function selectSearchResult() {
     const searchResults = document.querySelectorAll(".results>*")
 
-    searchResults.forEach(location => {
-        location.addEventListener("click", async (e) => {
+    searchResults.forEach(result => {
+        result.addEventListener("click", async (e) => {
             // immediately search for the weather of that city
             const { lat, lon, city, state, country } = e.target.dataset
             const data = await weatherAPI.fetchWeather(lat, lon)

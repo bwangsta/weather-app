@@ -4,7 +4,6 @@ import drizzleImg from "./assets/img/drizzle.jpg"
 import rainImg from "./assets/img/rain.jpg"
 import snowImg from "./assets/img/snow.jpg"
 import thunderstormImg from "./assets/img/thunderstorm.jpg"
-import Header from "./components/header"
 import { DateTime } from "luxon";
 
 const weatherDescription = {
@@ -38,7 +37,40 @@ const weatherDescription = {
     99: "Thunderstorm with heavy hail"
 }
 
-// Helper functions
+function typeTimer() {
+    let typeTimerId;
+
+    function get() {
+        return typeTimerId
+    }
+
+    function set(func, event) {
+        typeTimerId = setTimeout(func, 1000, event)
+    }
+
+    function reset() {
+        clearTimeout(typeTimerId)
+    }
+
+    return { get, set, reset }
+}
+
+function getCurrentTime(timezone) {
+    const dt = DateTime.now().setZone(timezone)
+    return dt.toFormat("tt")
+}
+
+function convertDatetime(datetime, timezone) {
+    const dt = DateTime.fromISO(datetime, { zone: timezone })
+    const formattedDatetime = {
+        time: dt.toFormat("t"),
+        date: dt.toFormat("DDD"),
+        weekday: dt.toFormat("EEEE"),
+    }
+
+    return formattedDatetime
+}
+
 function selectWeatherIcon(code) {
     switch (true) {
         case (code === 0):
@@ -87,86 +119,6 @@ function convertTemperature(temp) {
     return `${Math.ceil(temp)}°F`
 }
 
-function convertDatetime(datetime, timezone) {
-    const dt = DateTime.fromISO(datetime, { zone: timezone })
-    const formattedDatetime = {
-        time: dt.toFormat("t"),
-        date: dt.toFormat("DDD"),
-        weekday: dt.toFormat("EEEE"),
-    }
-
-    return formattedDatetime
-}
-
-function getCurrentTime(timezone) {
-    const dt = DateTime.now().setZone(timezone)
-    return dt.toFormat("tt")
-}
-
-function clear(element) {
-    while (element.firstChild) {
-        element.removeChild(element.firstChild);
-    }
-}
-
-function initialLoad() {
-    const main = document.createElement("main")
-
-    main.id = "content"
-    main.className = "container"
-
-    document.body.prepend(
-        Header(),
-        main
-    )
-}
-
-function typeTimer() {
-    let typeTimerId;
-
-    function get() {
-        return typeTimerId
-    }
-
-    function set(func, event) {
-        typeTimerId = setTimeout(func, 1000, event)
-    }
-
-    function reset() {
-        clearTimeout(typeTimerId)
-    }
-
-    return { get, set, reset }
-}
-
-function resetSearchInput() {
-    const searchInput = document.querySelector(".searchbar__input")
-    searchInput.value = ""
-}
-
-function displayTime(data) {
-    // makes current time change in real time
-    const time = document.querySelector(".weather__time")
-    setInterval(() => time.textContent = getCurrentTime(data.timezone), 1000)
-}
-
-function showError(input, error, isValidLocation) {
-    if (input.validity.valueMissing) {
-        error.textContent = "Please enter a location name"
-    }
-    else if (input.validity.tooShort) {
-        error.textContent = `Location name should be at least ${input.minLength} characters`
-    }
-    else if (input.validity.tooLong) {
-        error.textContent = `Location name should be at most ${input.maxLength} characters`
-    }
-    else if (!isValidLocation) {
-        error.textContent = "Unable to find the location. Please enter a different location"
-    }
-
-    input.classList.add("invalid")
-}
-
 // check to make sure location exists within the weather API
 function validLocation(data) {
     if ("results" in data) {
@@ -181,12 +133,7 @@ export {
     convertDatetime,
     getCurrentTime,
     selectBackgroundImage,
-    clear,
-    initialLoad,
     selectDescription,
     typeTimer,
-    resetSearchInput,
-    displayTime,
-    showError,
     validLocation
 }

@@ -1,4 +1,4 @@
-import { convertTemperature, selectWeatherIcon, selectBackgroundImage, selectDescription, convertDatetime, getCurrentTime } from "../helper"
+import { convertTemperature, selectWeatherIcon, selectBackgroundImage, selectDescription, convertDatetime, getCurrentTime } from "../weather-logic"
 
 function Weather(name, state, country, data) {
     const currentWeather = document.createElement("div")
