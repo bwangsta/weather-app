@@ -1,4 +1,4 @@
-# Weather App
+# Weathering
 This project was completed for The Odin Project Javascript Weather App Project. The purpose of this project was to create a weather application that can receive data from the Openweather API. I decided to switch to Open Meteo API due to lack of data in the free version for the Openweather API.
 
 ## Built With 
