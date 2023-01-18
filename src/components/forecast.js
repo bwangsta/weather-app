@@ -2,10 +2,10 @@ import { convertTemperature, selectWeatherIcon, selectDescription, convertDateti
 import ForecastCard from "./forecast-card"
 
 function Forecast(data) {
-    const forecast = document.createElement("div")
+    const forecast = document.createElement("section")
     const forecastGrid = document.createElement("div")
 
-    forecast.className = "forecast"
+    forecast.className = "forecast container"
     forecastGrid.className = "forecast__grid"
 
     const { time, weathercode, temperature_2m_min, temperature_2m_max } = data.daily

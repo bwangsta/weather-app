@@ -15,7 +15,7 @@ WIP
 In order to setup and work on this project on your own, you will need to:
 
 1. Clone this project\
-`git clone https://github.com/bwangsta/weather-app.git`
+`git clone https://github.com/bwangsta/weathering.git`
 
 2. Install required dependencies\
 `npm install`
@@ -24,7 +24,7 @@ In order to setup and work on this project on your own, you will need to:
 `npm run build`
 
 ## Usage
-Type in a city in the search bar and the webpage will display its current weather and its future daily forecast.
+Type in a city in the search bar and the webpage will display its current weather and its future daily forecast. If the location is different from the one you want, type the location  name in the search bar and after a second, a search result will pop up and allow you to select the correct location. 
 
 ## Roadmap
 - [x] Dynamically change background image based on location's current weather

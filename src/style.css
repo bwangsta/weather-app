@@ -2,6 +2,13 @@
   --white: #FBFBFB;
   --gray: rgb(104 104 104);
   --black: rgb(37, 36, 36);
+  --text-base: 1rem;
+  --text-xl: 1.5rem;
+  --text-2xl: 2.25rem;
+  --text-3xl: 3.375rem;
+  --text-4xl: 5.063rem;
+  --text-5xl: 7.594rem;
+  --text-6xl: 11.391rem;
 }
 
 @font-face {
@@ -24,12 +31,6 @@ p {
   font-size: 1.125rem;
 }
 
-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 body {
   font-family: "Nunito", sans-serif;
   min-height: 100vh;
@@ -42,9 +43,36 @@ body {
   color: var(--white);
 }
 
+button {
+  cursor: pointer;
+}
+
 .container {
   max-width: 75rem;
   margin: 0 auto;
+}
+
+.hidden {
+  display: none;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem 1rem;
+}
+
+.navbar>button {
+  background-color: transparent;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0.5rem;
+  border-radius: 50%;
+  color: var(--white);
+  font-weight: 900;
+  border: 2px solid var(--white);
 }
 
 .searchbar {
@@ -53,8 +81,8 @@ body {
     "searchbar searchButton"
     "error ."
     "results .";
-  padding: 1.5rem 1rem;
   position: relative;
+  margin: 0 auto;
 }
 
 .search-results {
@@ -67,6 +95,7 @@ body {
 .search-results li {
   padding: 0.5rem;
   font-size: 1rem;
+  cursor: pointer;
 }
 
 .searchbar__input,
@@ -74,7 +103,7 @@ body {
   border-radius: 0.5rem;
   padding: 0.5rem;
   border: 2px solid var(--white);
-  font-size: clamp(1rem, 3vw, 1.2rem)
+  font-size: var(--text-base)
 }
 
 .searchbar__input {
@@ -117,7 +146,7 @@ body {
   font-weight: 900;
 }
 
-.weather {
+.current-weather {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -127,29 +156,30 @@ body {
 }
 
 @media (min-width: 500px) {
-  .weather {
+  .current-weather {
     justify-content: space-between;
   }
 }
 
-.weather__location {
-  font-size: clamp(3.4rem, 10vw, 5.06rem);
+.location__name {
+  font-size: clamp(var(--text-3xl), 10vw, var(--text-4xl));
   font-weight: 900;
 }
 
-.weather__state,
-.weather__country,
-.weather__time,
+.location__state,
+.location__country,
 .weather__weekday,
 .weather__date {
-  font-size: clamp(1.5rem, 5vw, 2.25rem);
+  font-size: clamp(var(--text-xl), 5vw, var(--text-2xl));
   font-weight: 700;
 }
 
-.weather__grid {
+.weather__info {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-areas:
+    "date date"
+    "weekday weekday"
     "weatherIcon temperature"
     "description description"
     "low high";
@@ -158,14 +188,24 @@ body {
   align-items: center;
 }
 
+.weather__date {
+  grid-area: date;
+  font-size: var(--text-xl)
+}
+
+.weather__weekday {
+  grid-area: weekday;
+  font-size: clamp(var(--text-2xl), 5vw, var(--text-3xl));
+}
+
 .weather__icon {
   grid-area: weatherIcon;
-  font-size: clamp(7.6rem, 20vw, 11.4rem);
+  font-size: clamp(var(--text-5xl), 20vw, var(--text-6xl));
 }
 
 .weather__temp {
   grid-area: temperature;
-  font-size: clamp(3.375rem, 10vw, 5.06rem);
+  font-size: clamp(var(--text-3xl), 10vw, var(--text-4xl));
   font-weight: 900;
 }
 
@@ -184,12 +224,12 @@ body {
 .weather__description,
 .weather__min,
 .weather__max {
-  font-size: clamp(1.5rem, 5vw, 2.25rem);
+  font-size: clamp(var(--text-xl), 5vw, var(--text-2xl));
 }
 
 .forecast__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(10.5rem, 11rem));
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 11rem));
   justify-content: center;
   gap: 1rem;
   padding: 1rem;

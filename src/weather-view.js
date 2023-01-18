@@ -1,4 +1,4 @@
-import Header from "./components/header"
+import Navbar from "./components/navbar";
 import { getCurrentTime } from "./weather-logic";
 
 function clear(element) {
@@ -8,15 +8,9 @@ function clear(element) {
 }
 
 function initialLoad() {
-    const main = document.createElement("main")
+    const header = document.querySelector("header")
 
-    main.id = "content"
-    main.className = "container"
-
-    document.body.prepend(
-        Header(),
-        main
-    )
+    header.append(Navbar())
 }
 
 function resetSearchInput() {
@@ -26,7 +20,7 @@ function resetSearchInput() {
 
 function displayTime(data) {
     // makes current time change in real time
-    const time = document.querySelector(".weather__time")
+    const time = document.querySelector(".time")
     setInterval(() => time.textContent = getCurrentTime(data.timezone), 1000)
 }
 

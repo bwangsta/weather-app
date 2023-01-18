@@ -4,6 +4,7 @@ function Searchbar() {
     const searchError = document.createElement("span")
     const searchBtn = document.createElement("button")
     const searchIcon = document.createElement("i")
+    const searchResults = document.createElement("div")
 
     searchBar.noValidate = true
     searchBar.role = "search"
@@ -20,17 +21,17 @@ function Searchbar() {
 
     searchBar.className = "searchbar"
     searchInput.className = "searchbar__input"
-    // searchInput.classList.add("invalid")
     searchError.className = "searchbar__error"
     searchBtn.className = "searchbar__btn"
-    searchIcon.className = "bi"
-    searchIcon.classList.add("bi-search")
+    searchIcon.className = "bi bi-search"
+    searchResults.className = "search-results"
 
     searchBtn.append(searchIcon)
     searchBar.append(
         searchInput,
         searchError,
-        searchBtn
+        searchBtn,
+        searchResults
     )
 
     return searchBar

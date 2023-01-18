@@ -8,8 +8,7 @@ import "./assets/img/rain.jpg"
 import "./assets/img/snow.jpg"
 import "./assets/img/thunderstorm.jpg"
 import WeatherAPI from "./weather-api"
-import Weather from "./components/weather"
-import Forecast from "./components/forecast"
+import Weather from "./pages/weather"
 import SearchResultList from "./components/search-result-list"
 import { clear, initialLoad, resetSearchInput, displayTime, showError } from "./weather-view"
 import { typeTimer, validLocation } from "./weather-logic"
@@ -27,14 +26,17 @@ const searchResultsDiv = document.querySelector(".search-results")
 const weatherAPI = WeatherAPI()
 const timer = typeTimer()
 
-searchInput.addEventListener("keyup", e => {
+searchInput.addEventListener("keyup", startTimer)
+searchBtn.addEventListener("click", search)
+
+function startTimer(event) {
     timer.reset()
     clear(searchResultsDiv)
-    timer.set(showSearchResult, e.target.value)
-})
+    timer.set(showSearchResult, event.target.value)
+}
 
-searchBtn.addEventListener("click", async e => {
-    e.preventDefault()
+async function search(event) {
+    event.preventDefault()
 
     const geocode = await weatherAPI.fetchGeocode(searchInput.value)
     const isValidLocation = validLocation(geocode)
@@ -48,7 +50,7 @@ searchBtn.addEventListener("click", async e => {
     else {
         showError(searchInput, searchError, isValidLocation)
     }
-})
+}
 
 async function showSearchResult(value) {
     const geocode = await weatherAPI.fetchGeocode(value)
@@ -84,28 +86,26 @@ function renderContent(location, state, country, data) {
     clear(searchResultsDiv)
     clear(content)
 
-    content.append(
-        Weather(location, state, country, data),
-        Forecast(data)
+    document.body.append(
+        Weather(location, state, country, data)
     )
 
-    displayTime(data)
+    // displayTime(data)
     resetSearchInput()
 }
 
 // TESTING PURPOSES ONLY
 const test = TestData()
 
-async function main(city) {
+async function testRun(city) {
     const geocode = await test.fetchGeocode(city)
     const { name, admin1, country, latitude, longitude } = geocode.results[0]
     const data = await test.fetchWeather(latitude, longitude)
 
-    content.append(
-        Weather(name, admin1, country, data),
-        Forecast(data)
+    document.body.append(
+        Weather(name, admin1, country, data)
     )
-    displayTime(data)
+    // displayTime(data)
 }
 
-main("Irvine")
+testRun("Irvine")
